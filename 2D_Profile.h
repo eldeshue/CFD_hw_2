@@ -180,6 +180,23 @@ class Profile_2D {
 			}
 		}
   }
+	// after FDE
+	void Para_Relative_Error(){
+		T init_val = data[0][0].first;
+		for(int n = 0; n < time_grid; n++){
+			for(int j = 0; j < space_grid; j++){
+				T t = time_step * n;
+        T s = space_step * j;
+        T eta = s / (2 * sqrt( alpha * t));
+        T eta1 = space_size / (2 * sqrt( alpha * t));
+				T Analytic_value = 0;
+        for(int i = 0; i < 100; i++){
+          Analytic_value += init_val * (std::erfc(2*i*eta1 + eta) - std::erfc(2*(i + 1)*eta1 - eta));
+        }
+				data[n][j].first = 100 * (Analytic_value - data[n][j].first) / Analytic_value;
+			}
+		}
+	}
 
 };
 

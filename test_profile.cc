@@ -37,6 +37,7 @@ int main(){
   //test.Para_DF_explicit();
   //test.Para_LSN_implicit<39>();
   test.Para_CN_implicit<39>();
+	test.Para_Relative_Error();
 
 	// make a plot
 	// find row number of data, and print that row. 
