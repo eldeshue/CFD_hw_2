@@ -35,8 +35,9 @@ int main(){
   test.boundary_condition(U_0, 0);
   //test.Para_FTCS_explicit();
   //test.Para_DF_explicit();
-  test.Para_LSN_implicit();
-  
+  //test.Para_LSN_implicit<39>();
+  test.Para_CN_implicit<39>();
+
 	// make a plot
 	// find row number of data, and print that row. 
 	// y value is   and x value is 
