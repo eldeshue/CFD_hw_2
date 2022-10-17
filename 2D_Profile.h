@@ -9,7 +9,7 @@
 #include"Dense_Matrix.h"
 #include"Linear_Solver.h"
 
-template< typename T, int time_grid, int space_grid>
+template< typename T, int time_grid, int space_grid >
 class Profile_2D {
   private:
 
@@ -40,6 +40,8 @@ class Profile_2D {
   };
 
   // initializing first time level
+	// initial condition, a value
+	// t = 0 -> u = init
   void initial_condition(double init){ 
     for( int j = 1; j < space_grid - 1; j++){
 		  data[0][j]=std::make_pair(init, j*space_step);
@@ -47,13 +49,15 @@ class Profile_2D {
   };
 
   // initializing first and last space level
+	// boundary condition, two values
+	// y_0 -> u = start, y_max -> u = end
   void boundary_condition(double start, double end){
       for( int n = 0; n < time_grid; n++){
 		  data[n][0] = std::make_pair(start, 0);
 		  data[n][space_grid - 1] = std::make_pair(end,(space_grid - 1)*space_step);
 	  }
   };
-
+	// Analytic solution of a simple parabolic equation
   void Para_Analytic(double init_val){
     // calculate velocity profile
 	  for( int n = 0; n < time_grid; n++){
